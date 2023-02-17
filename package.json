@@ -7,7 +7,10 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"check": "npm-check",
+		"update": "npm-check -u",
+		"expose": "npm run dev -- --host"
 	},
 	"dependencies": {
 		"@astrojs/react": "^2.0.2",
