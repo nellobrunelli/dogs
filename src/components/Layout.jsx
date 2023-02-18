@@ -1,6 +1,57 @@
 import React, { Component } from "react";
+import axios from "axios";
+
+import { URL_GET_DOGS } from '../constants/state';
+
+// const UrlGetDogs = `https://dog.ceo/api/breeds/image/random/10%20Fetch!`;
 
 class Layout extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      onLoading: false,
+      error: false
+    };
+  }
+
+  // componentDidMount () {
+  // axios.post(`${API.REST_OAUTH2}/token`, p)
+  //     .then(res => {
+  //       API.TOKEN = res.data.access_token;
+  //       this.getMe(API.TOKEN);
+  //     })
+  //     .catch(() => this.setState({
+  //       loading: false,
+  //       failure: true,
+  //     }));
+  // };
+
+  componentDidMount() {
+    this.setState({ onLoading: true });
+    axios.get(URL_GET_DOGS)
+      .then(e => {
+        console.log('>>>>>>>> ', e);
+      })
+      .catch((e) => {
+        console.log('>>>>>>>> ', e);
+
+        throw e;
+      })
+  }
+
+  getDogs = () => {
+    this.setState({ onLoading: true });
+    axios.get(URL_GET_DOGS)
+      .then(e => {
+        console.log('>>>>>>>> ', e);
+      })
+      .catch((e) => {
+        console.log('>>>>>>>> ', e);
+
+        throw e;
+      })
+  };
 
   render() {
     return (
@@ -11,5 +62,7 @@ class Layout extends Component {
     );
   }
 }
+
+
 
 export default Layout;
