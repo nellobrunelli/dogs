@@ -3,8 +3,6 @@ import axios from "axios";
 
 import { URL_GET_DOGS } from '../constants/state';
 
-// const UrlGetDogs = `https://dog.ceo/api/breeds/image/random/10%20Fetch!`;
-
 class Layout extends Component {
 
   constructor() {
@@ -35,7 +33,6 @@ class Layout extends Component {
       })
       .catch((e) => {
         console.log('>>>>>>>> ', e);
-
         throw e;
       })
   }
@@ -62,7 +59,5 @@ class Layout extends Component {
     );
   }
 }
-
-
 
 export default Layout;
