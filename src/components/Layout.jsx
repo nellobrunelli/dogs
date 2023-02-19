@@ -37,7 +37,8 @@ class Layout extends Component {
       })
   }
 
-  getDogs = () => {
+  getDogs = (dog) => {
+    console.log(dog);
     this.setState({ onLoading: true });
     axios.get(URL_GET_DOGS)
       .then(e => {
