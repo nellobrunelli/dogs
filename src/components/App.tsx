@@ -1,34 +1,5 @@
-import React from 'react'
-import '../reducers/reducerDogs'
-
-import { useReducer } from 'react'
-
-type StateDogs = {
-  dogs:[]
-}
-
-const StateDogsInit: StateDogs = {
-  dogs: []
-}
-
-type ActionDogs = {
-  type: 'GET_DOGS', 
-  payload: string
-} | {
-  type: 'FETCH_DOGS', 
-  payload: string  
-}
-
-const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
-  switch (action.type) {
-    case 'GET_DOGS':
-      return state
-    case 'FETCH_DOGS':
-      return state
-    default:
-      throw new Error(`Unhandled action type: ${action}`)
-  }
-}
+import React, { useReducer } from 'react'
+import { reducerDogs, StateDogsInit } from '../reducers/reducerDogs'
 
 function App() {
   
