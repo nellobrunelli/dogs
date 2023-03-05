@@ -31,7 +31,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <div> ci sono</div>
+    <div>ci sono</div>
   )
 }
 
