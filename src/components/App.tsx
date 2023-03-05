@@ -1,37 +1,41 @@
+import React from 'react'
+import '../reducers/reducerDogs'
+
 import { useReducer } from 'react'
 
-const ADD_TODO = 'addTodo'
-const UPDATE_VALUE = 'updateValue'
-
-type State = {
+type StateDogs = {
   dogs:[]
 }
 
-const initialState: State = {
+const StateDogsInit: StateDogs = {
   dogs: []
 }
 
-type Action = {
-  type: string, 
+type ActionDogs = {
+  type: 'GET_DOGS', 
   payload: string
+} | {
+  type: 'FETCH_DOGS', 
+  payload: string  
 }
 
-const reducer = (state: State, action: Action): State => {
+const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
   switch (action.type) {
-    case ADD_TODO:
+    case 'GET_DOGS':
       return state
-    case UPDATE_VALUE:
+    case 'FETCH_DOGS':
       return state
     default:
-      throw new Error(`Unhandled action type: ${action.type}`)
+      throw new Error(`Unhandled action type: ${action}`)
   }
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  
+  const [state, dispatch] = useReducer(reducerDogs, StateDogsInit)
 
   return (
-    <div>ci sono</div>
+    <div>Ciao mondo!</div>
   )
 }
 
