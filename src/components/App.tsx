@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, { useReducer } from 'react'
-
-import  {URL_GET_RANDOM_DOGS} from '../constants/url';
 import axios from 'axios';
+import React, { useReducer } from 'react'
+import { URL_GET_RANDOM_DOGS } from '../constants/url';
+
+import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
 
 function App() {
 
-  const getRandomDogs = () => {
+  const [state, dispatchDogs] = useReducer(reducerDogs, StateDogsInit)
+
+    const getRandomDogs = () => {
     axios
       .get(URL_GET_RANDOM_DOGS)
       .then(response => {
@@ -20,35 +23,6 @@ function App() {
         throw error
       })
   }
-  
-  const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
-    switch (action.type) {    
-      case 'GET_RANDOM_DOGS':
-        return {...state, dogs: action.payload.message}
-      case 'FETCH_DOGS_BY_BREED':
-        return state
-      default:
-        throw new Error(`Unhandled action type: ${action}`)
-    }
-  }
-
-  type StateDogs = {
-    dogs:[]
-  }
-
-  const StateDogsInit: StateDogs = {
-    dogs: []
-  }
-
-  type ActionDogs = {
-    payload: any
-    type: 'GET_RANDOM_DOGS'
-  } | {
-    type: 'FETCH_DOGS_BY_BREED', 
-    payload: any  
-  }
-
-  const [state, dispatchDogs] = useReducer(reducerDogs, StateDogsInit)
 
   return (
     <div>
