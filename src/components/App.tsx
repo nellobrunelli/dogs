@@ -1,28 +1,61 @@
-import React, { useReducer } from 'react'
-import { reducerDogs, StateDogsInit } from '../reducers/reducerDogs'
-import  {URL_GET_RANDOM_DOGS} from '../constants/url';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
+import React, { useReducer } from 'react'
+
+import  {URL_GET_RANDOM_DOGS} from '../constants/url';
 import axios from 'axios';
 
 function App() {
-  
-  const [state, dispatch] = useReducer(reducerDogs, StateDogsInit)
 
   const getRandomDogs = () => {
-    try {
-      const response =  axios.get(URL_GET_RANDOM_DOGS);
-      console.log('responde ', response);
-    } catch (error) {
-      console.log('error ', error);  
-    }
+    axios
+      .get(URL_GET_RANDOM_DOGS)
+      .then(response => {
+        dispatchDogs({
+          type: 'GET_DOGS',
+          payload: response.data
+        })       
+      })
+      .catch(error => {
+        throw error
+      })
   }
+  
+ const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
+  switch (action.type) {    
+    case 'GET_DOGS':
+      return {...state, dogs: action.payload.message}
+    case 'FETCH_DOGS':
+      return state
+    default:
+      throw new Error(`Unhandled action type: ${action}`)
+  }
+}
+
+ type StateDogs = {
+    dogs:[]
+  }
+
+ const StateDogsInit: StateDogs = {
+  dogs: []
+}
+
+  type ActionDogs = {
+    payload: any;
+    type: 'GET_DOGS'
+  } | {
+    type: 'FETCH_DOGS', 
+    payload: []  
+  }
+
+  const [state, dispatchDogs] = useReducer(reducerDogs, StateDogsInit)
 
   return (
     <div>
       <button 
         className="bg-slate-600"
         onClick={() => {getRandomDogs()}}
-        >
+      >
         BOTTONE
       </button>
     </div>
