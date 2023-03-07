@@ -21,24 +21,24 @@ function App() {
       })
   }
   
- const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
-  switch (action.type) {    
-    case 'GET_RANDOM_DOGS':
-      return {...state, dogs: action.payload.message}
-    case 'FETCH_DOGS_BY_BREED':
-      return state
-    default:
-      throw new Error(`Unhandled action type: ${action}`)
+  const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
+    switch (action.type) {    
+      case 'GET_RANDOM_DOGS':
+        return {...state, dogs: action.payload.message}
+      case 'FETCH_DOGS_BY_BREED':
+        return state
+      default:
+        throw new Error(`Unhandled action type: ${action}`)
+    }
   }
-}
 
- type StateDogs = {
+  type StateDogs = {
     dogs:[]
   }
 
- const StateDogsInit: StateDogs = {
-  dogs: []
-}
+  const StateDogsInit: StateDogs = {
+    dogs: []
+  }
 
   type ActionDogs = {
     payload: any
