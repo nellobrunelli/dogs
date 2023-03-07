@@ -12,7 +12,7 @@ function App() {
       .get(URL_GET_RANDOM_DOGS)
       .then(response => {
         dispatchDogs({
-          type: 'GET_DOGS',
+          type: 'GET_RANDOM_DOGS',
           payload: response.data
         })       
       })
@@ -23,9 +23,9 @@ function App() {
   
  const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
   switch (action.type) {    
-    case 'GET_DOGS':
+    case 'GET_RANDOM_DOGS':
       return {...state, dogs: action.payload.message}
-    case 'FETCH_DOGS':
+    case 'FETCH_DOGS_BY_BREED':
       return state
     default:
       throw new Error(`Unhandled action type: ${action}`)
@@ -41,11 +41,11 @@ function App() {
 }
 
   type ActionDogs = {
-    payload: any;
-    type: 'GET_DOGS'
+    payload: any
+    type: 'GET_RANDOM_DOGS'
   } | {
-    type: 'FETCH_DOGS', 
-    payload: []  
+    type: 'FETCH_DOGS_BY_BREED', 
+    payload: any  
   }
 
   const [state, dispatchDogs] = useReducer(reducerDogs, StateDogsInit)
