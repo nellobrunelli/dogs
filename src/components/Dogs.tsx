@@ -3,11 +3,11 @@ import { Dispatch, useEffect } from 'react'
 import type React from 'react'
 import { URL_GET_RANDOM_DOGS } from '../constants/url'
 import type {ActionDogs} from '../reducers/reducerDogs'
+import '../css/styles.css'
 
 interface Props {
   dogs: []
   dispatchDogs: Dispatch<ActionDogs>
-
 }
 
 const Dogs:React.FC<Props> = ({dogs, dispatchDogs}) => {
@@ -32,12 +32,17 @@ const Dogs:React.FC<Props> = ({dogs, dispatchDogs}) => {
 
   const displayDogs = () => {    
     return dogs.map((dog, i) => { 
-      return <img src={dog} key={i} />
+      return (
+       <div key={i} className="dog">
+          <img src={dog} />
+        </div> 
+      )
     })
   }
 
   return (
-    <div>
+    // <button className='btn-primary'>bottone</button>
+    <div className="dogs">
      {displayDogs()}
     </div>
   )
