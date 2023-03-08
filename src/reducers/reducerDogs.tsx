@@ -8,7 +8,7 @@ export const StateDogsInit: StateDogs = {
   dogs: []
 }
 
-type ActionDogs = {
+export type ActionDogs = {
   payload: any
   type: 'GET_RANDOM_DOGS'
 } | {
