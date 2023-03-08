@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import axios from 'axios';
-import React, { useReducer, useEffect, HTMLAttributes } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import { URL_GET_RANDOM_DOGS } from '../constants/url';
 
-import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
+import {reducerDogs, StateDogsInit, StateDogs} from '../reducers/reducerDogs';
+import Dogs from './Dogs';
 
 function App() {
 
@@ -28,21 +27,9 @@ function App() {
     getRandomDogs()
   }, [])
 
-  const displayDogs = () => {
-    return state.dogs.map((dog, i) => { 
-      return <img src={dog} key={i} />
-    })
-  }
-
   return (
     <div>
-      <button 
-        className="bg-slate-600"
-        onClick={() => {getRandomDogs()}}
-      >
-        BOTTONE
-      </button>
-      <div>{displayDogs()}</div>
+      <Dogs dogs={state.dogs} />
     </div>
   )
 }

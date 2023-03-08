@@ -18,7 +18,7 @@ type ActionDogs = {
 
 export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
   switch (action.type) {    
-    case 'GET_RANDOM_DOGS':
+    case 'GET_RANDOM_DOGS':      
       return {...state, dogs: action.payload.message}
     case 'FETCH_DOGS_BY_BREED':
       return state
