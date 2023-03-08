@@ -1,15 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-  
-export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
-  switch (action.type) {    
-    case 'GET_RANDOM_DOGS':
-      return {...state, dogs: action.payload.message}
-    case 'FETCH_DOGS_BY_BREED':
-      return state
-    default:
-      throw new Error(`Unhandled action type: ${action}`)
-  }
-}
 
 type StateDogs = {
   dogs:[]
@@ -25,4 +14,15 @@ type ActionDogs = {
 } | {
   type: 'FETCH_DOGS_BY_BREED', 
   payload: any  
+}
+
+export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
+  switch (action.type) {    
+    case 'GET_RANDOM_DOGS':
+      return {...state, dogs: action.payload.message}
+    case 'FETCH_DOGS_BY_BREED':
+      return state
+    default:
+      throw new Error(`Unhandled action type: ${action}`)
+  }
 }
