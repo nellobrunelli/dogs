@@ -10,7 +10,7 @@ function App() {
   const [stateErrors, dispatchErrors] = useReducer(reducerErrors, StateErrorsInit)
 
   return (
-    <div>
+    <div className="bg-">
       <Dogs 
         dogs={stateDogs} 
         errors={stateErrors}

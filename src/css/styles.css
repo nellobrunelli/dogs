@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
+@layer utilities {
   .btn-primary {
     @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
-} */
+}
 
 @layer components {
   .dogs {
-    @apply flex;
+    @apply flex flex-wrap;
   }
   .dog {
-    @apply w-80 h-80;
+    @apply w-52 max-w-sm rounded border-2 shadow-xl m-2 px-2 py-2;
   }
 }
