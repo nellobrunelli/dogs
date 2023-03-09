@@ -35,7 +35,7 @@ const Dogs:React.FC<Props> = ({
       })
       .catch(error => {
         dispatchErrors({
-          type: 'SHOW_ERRORS',
+          type: 'SHOW_ERROR',
           isActive: true,
           payload: error.message
         })       

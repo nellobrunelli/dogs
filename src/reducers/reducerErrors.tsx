@@ -11,12 +11,12 @@ export const StateErrorsInit: StateErrors = {
 export type ActionErrors = {
   payload: string
   isActive: boolean,
-  type: 'SHOW_ERRORS'
+  type: 'SHOW_ERROR'
 }
 
 export const reducerErrors = (state: StateErrors, action: ActionErrors): StateErrors => {
   switch (action.type) {
-    case 'SHOW_ERRORS':      
+    case 'SHOW_ERROR':      
       return {...state, error: action.payload, isActive: true}
     default:
       throw new Error(`Unhandled action type: ${action}`)
