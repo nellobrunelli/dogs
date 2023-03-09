@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Dogs 
-        dogs={stateDogs.dogs} 
+        dogs={stateDogs} 
         errors={stateErrors}
         dispatchDogs={dispatchDogs} 
         dispatchErrors={dispatchErrors} 

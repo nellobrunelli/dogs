@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-type StateDogs = {
+export type StateDogs = {
   dogs:[]
 }
 
