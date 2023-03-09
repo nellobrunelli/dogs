@@ -5,6 +5,7 @@ import { URL_GET_RANDOM_DOGS } from '../constants/url'
 import type {ActionDogs, StateDogs} from '../reducers/reducerDogs'
 import type {ActionErrors, StateErrors} from '../reducers/reducerErrors'
 import '../css/styles.css'
+import Dog from './Dog'
 
 interface Props {
   dogs: StateDogs
@@ -24,7 +25,7 @@ const Dogs:React.FC<Props> = ({
     getRandomDogs()
   }, [])
 
-  const getRandomDogs = () => {
+  const getRandomDogs = () => {    
     axios
       .get(URL_GET_RANDOM_DOGS)
       .then(response => {
@@ -33,7 +34,7 @@ const Dogs:React.FC<Props> = ({
           payload: response.data
         })       
       })
-      .catch(error => {
+      .catch(error => {        
         dispatchErrors({
           type: 'SHOW_ERROR',
           isActive: true,
@@ -42,14 +43,18 @@ const Dogs:React.FC<Props> = ({
       })
   }
 
-  const displayDogs = (StateDogs: StateDogs) => {        
-    return StateDogs.dogs.map((dog, i) => { 
+  const displayDogs = (StateDogs: StateDogs) => {   
+         
+    return StateDogs.dogs.map((url, i) => { 
+      console.log(url, i);      
       return (
-       <div key={i} className="dog">
-          <img src={dog} />
-        </div> 
+        <Dog 
+          url={url}
+          dispatchDogs={dispatchDogs}
+          key={i}
+        />
       )
-    })
+    })    
   }
 
   const displayError = (error:string) => {    
