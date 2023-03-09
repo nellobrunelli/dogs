@@ -46,11 +46,11 @@ const Dogs:React.FC<Props> = ({
   const displayDogs = (StateDogs: StateDogs) => {   
          
     return StateDogs.dogs.map((url, i) => { 
-      console.log(url, i);      
       return (
         <Dog 
           url={url}
           dispatchDogs={dispatchDogs}
+          mkey={i}
           key={i}
         />
       )

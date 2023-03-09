@@ -15,4 +15,7 @@
   .dog {
     @apply w-52 max-w-sm rounded border-2 shadow-xl m-2 px-2 py-2;
   }
+  .buttonDeleteDog {
+    @apply bg-white rounded-xl p-2 m-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100;
+  }
 }
