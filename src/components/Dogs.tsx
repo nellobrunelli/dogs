@@ -3,14 +3,22 @@ import { Dispatch, useEffect } from 'react'
 import type React from 'react'
 import { URL_GET_RANDOM_DOGS } from '../constants/url'
 import type {ActionDogs} from '../reducers/reducerDogs'
+import type {ActionErrors} from '../reducers/reducerErrors'
 import '../css/styles.css'
 
 interface Props {
   dogs: []
-  dispatchDogs: Dispatch<ActionDogs>
+  dispatchDogs: Dispatch<ActionDogs>,
+  errors: object
+  dispatchErrors: Dispatch<ActionErrors>
 }
 
-const Dogs:React.FC<Props> = ({dogs, dispatchDogs}) => {
+const Dogs:React.FC<Props> = ({
+    dogs, 
+    errors,    
+    dispatchDogs,
+    dispatchErrors
+  }) => {
 
   useEffect(() => {
     getRandomDogs()
@@ -26,7 +34,12 @@ const Dogs:React.FC<Props> = ({dogs, dispatchDogs}) => {
         })       
       })
       .catch(error => {
-        throw error
+        console.log('>>>>> axios ', error);
+        dispatchErrors({
+          type: 'SHOW_ERRORS',
+          isActive: true,
+          payload: error.message
+        })       
       })
   }
 
