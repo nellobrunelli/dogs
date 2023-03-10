@@ -1,11 +1,14 @@
 import axios from 'axios'
-import { Dispatch, useEffect } from 'react'
+import { Dispatch, useEffect, useReducer } from 'react'
 import type React from 'react'
 import { URL_GET_RANDOM_DOGS } from '../constants/url'
 import type {ActionDogs, StateDogs} from '../reducers/reducerDogs'
 import type {ActionErrors, StateErrors} from '../reducers/reducerErrors'
-import '../css/styles.css'
+import {reducerLoading, StateLoadingInit} from '../reducers/reducerLoading';
+
 import Dog from './Dog'
+import Loader from './Loader'
+import '../css/styles.css'
 
 interface Props {
   dogs: StateDogs
@@ -15,32 +18,42 @@ interface Props {
 }
 
 const Dogs:React.FC<Props> = ({
-    dogs, 
-    errors,    
+    dogs,
+    errors,
     dispatchDogs,
-    dispatchErrors
+    dispatchErrors,
   }) => {
+
+  const [stateLoading, dispatchLoading] = useReducer(reducerLoading, StateLoadingInit)
+
 
   useEffect(() => {
     getRandomDogs()
+    console.log('renderizzo dogs');
   }, [])
 
   const getRandomDogs = () => {    
+
+    dispatchLoading({type: 'LOADING_TRUE'})
+
     axios
       .get(URL_GET_RANDOM_DOGS)
       .then(response => {
+        dispatchLoading({type: 'LOADING_FALSE'})
+
         dispatchDogs({
           type: 'GET_RANDOM_DOGS',
           payload: response.data
-        })       
+        })
       })
-      .catch(error => {        
+      .catch(error => {      
+        dispatchLoading({type: 'LOADING_FALSE'})
         dispatchErrors({
           type: 'SHOW_ERROR',
           isActive: true,
           payload: error.message
-        })       
-      })
+        })     
+      })     
   }
 
   const displayDogs = (StateDogs: StateDogs) => {   
@@ -57,20 +70,14 @@ const Dogs:React.FC<Props> = ({
     })    
   }
 
-  const displayError = (error:string) => {    
-    return (
-      <div className="error">{error}</div>
-    )
-  }
-
   const displayDom = () => {
-    return errors.isActive 
-      ? displayError(errors.error)
-      : displayDogs(dogs)
+    return stateLoading.isLoading
+      ? <Loader />
+      : <div className='dogs'>{displayDogs(dogs)}</div>
   }
 
   return (
-    <div className="dogs">
+    <div>
      {displayDom()}
     </div>
   )

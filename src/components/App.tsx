@@ -11,17 +11,20 @@ function App() {
   const [stateErrors, dispatchErrors] = useReducer(reducerErrors, StateErrorsInit)
 
   const displayDom = () => {
-    return stateErrors.isActive ? (
-      <Error text={stateErrors.error} />
-    ) : (
-      <Dogs 
-        dogs={stateDogs} 
-        errors={stateErrors}
-        dispatchDogs={dispatchDogs} 
-        dispatchErrors={dispatchErrors} 
-        />
-      )
+
+    if (stateErrors.isActive) {
+      return <Error text={stateErrors.error} />
     }
+
+    return (
+      <Dogs 
+          dogs={stateDogs} 
+          errors={stateErrors}
+          dispatchDogs={dispatchDogs} 
+          dispatchErrors={dispatchErrors} 
+      />
+    )
+  }
 
   return (
     <div className="">{displayDom()}</div>
