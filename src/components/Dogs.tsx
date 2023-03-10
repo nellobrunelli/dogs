@@ -3,7 +3,7 @@ import { Dispatch, useEffect, useReducer } from 'react'
 import type React from 'react'
 import { URL_GET_RANDOM_DOGS } from '../constants/url'
 import type {ActionDogs, StateDogs} from '../reducers/reducerDogs'
-import type {ActionErrors, StateErrors} from '../reducers/reducerErrors'
+import type { ActionErrors } from '../reducers/reducerErrors'
 import {reducerLoading, StateLoadingInit} from '../reducers/reducerLoading';
 
 import Dog from './Dog'
@@ -13,13 +13,11 @@ import '../css/styles.css'
 interface Props {
   dogs: StateDogs
   dispatchDogs: Dispatch<ActionDogs>,
-  errors: StateErrors
   dispatchErrors: Dispatch<ActionErrors>
 }
 
 const Dogs:React.FC<Props> = ({
     dogs,
-    errors,
     dispatchDogs,
     dispatchErrors,
   }) => {

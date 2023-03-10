@@ -19,7 +19,6 @@ function App() {
     return (
       <Dogs 
           dogs={stateDogs} 
-          errors={stateErrors}
           dispatchDogs={dispatchDogs} 
           dispatchErrors={dispatchErrors} 
       />
