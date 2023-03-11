@@ -15,7 +15,13 @@
   .dog {
     @apply w-52 max-w-sm rounded border-2 shadow-xl m-2 px-2 py-2;
   }
+  .dog-header {
+    @apply flex text-left text-xs;
+  }
+  .dog-image {
+    @apply p-1;
+  }
   .buttonDeleteDog {
-    @apply bg-white rounded-xl p-2 m-2 ml-[75%] text-gray-400 hover:text-gray-500 hover:bg-gray-100;
+    @apply bg-white rounded-xl ml-[40%] text-gray-400 hover:text-gray-500 hover:bg-gray-100;
   }
 }
