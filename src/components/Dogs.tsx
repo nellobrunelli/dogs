@@ -24,10 +24,8 @@ const Dogs:React.FC<Props> = ({
 
   const [stateLoading, dispatchLoading] = useReducer(reducerLoading, StateLoadingInit)
 
-
   useEffect(() => {
     getRandomDogs()
-    console.log('renderizzo dogs');
   }, [])
 
   const getRandomDogs = () => {    
@@ -54,12 +52,12 @@ const Dogs:React.FC<Props> = ({
       })     
   }
 
-  const displayDogs = (StateDogs: StateDogs) => {   
-         
-    return StateDogs.dogs.map((url, i) => { 
+  const displayDogs = (dogs: StateDogs) => {   
+    
+    return dogs.dogs.map((dog, i) => { 
       return (
         <Dog 
-          url={url}
+          dog={dog}
           dispatchDogs={dispatchDogs}
           mkey={i}
           key={i}

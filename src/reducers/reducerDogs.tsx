@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type StateDogs = {
-  dogs: Array<never>
+  dogs: Array<{url: string, name: string}>
+}
+
+export type Dog = {
+  url: string,
+  name: string
 }
 
 export const StateDogsInit: StateDogs = {
@@ -20,11 +25,19 @@ export type ActionDogs = {
 }
 
 export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => {
-  switch (action.type) {    
-    case 'GET_RANDOM_DOGS':      
-      return {...state, dogs: action.payload.message}
+  switch (action.type) { 
+    case 'GET_RANDOM_DOGS': {
+      // return {...state, dogs: action.payload.message}
+      const dogs = action.payload.message.map((url: string) => {
+        return {
+          url: url,
+          name: url.split("/")[4].replace('-', ' ')
+        }
+      });
+      return {...state, dogs: dogs}
+    }
     case 'DELETE_DOG':      
-      return {...state, dogs: state.dogs.filter((dog) => { return dog !== action.payload})}
+      return {...state, dogs: state.dogs.filter((dog) => { return dog.url !== action.payload})}
     case 'FETCH_DOGS_BY_BREED':
       return state
     default:
