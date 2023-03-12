@@ -18,17 +18,19 @@ function App() {
     }
 
     return (
-      <Dogs 
-          dogs={stateDogs} 
-          dispatchDogs={dispatchDogs} 
-          dispatchErrors={dispatchErrors} 
+      <Dogs
+        dogs={stateDogs} 
+        dispatchDogs={dispatchDogs} 
+        dispatchErrors={dispatchErrors} 
       />
-      // <Select dispatchDogs={dispatchDogs} />
     )
   }
 
   return (
-    <div className="">{displayDom()}</div>
+    <div>
+      <div><Select dispatchDogs={dispatchDogs} /></div>
+      <div className="">{displayDom()}</div>
+    </div>
   )
 }
 
