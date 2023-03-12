@@ -4,6 +4,7 @@ import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
 import {reducerErrors, StateErrorsInit} from '../reducers/reducerErrors';
 import Dogs from './Dogs';
 import Error from './Error';
+import Select from './Select';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           dispatchDogs={dispatchDogs} 
           dispatchErrors={dispatchErrors} 
       />
+      // <Select dispatchDogs={dispatchDogs} />
     )
   }
 

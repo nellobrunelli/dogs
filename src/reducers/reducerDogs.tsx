@@ -39,6 +39,8 @@ export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => 
     case 'DELETE_DOG':      
       return {...state, dogs: state.dogs.filter((dog) => { return dog.url !== action.payload})}
     case 'FETCH_DOGS_BY_BREED':
+      console.log('ci passo !!!');
+      
       return state
     default:
       throw new Error(`Unhandled action type: ${action}`)
