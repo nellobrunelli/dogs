@@ -18,7 +18,7 @@ export type ActionDogs = {
   payload: any
 } | {
   type: 'FETCH_DOGS_BY_BREED', 
-  payload: any  
+  payload: {url: string, breed: string}  
 } | {
   type: 'DELETE_DOG', 
   payload: string 
@@ -39,9 +39,12 @@ export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => 
     case 'DELETE_DOG':      
       return {...state, dogs: state.dogs.filter((dog) => { return dog.url !== action.payload})}
     case 'FETCH_DOGS_BY_BREED':
-      console.log('ci passo !!!');
+      // return {...state, dogs: state.dogs.push({url: action.payload.url, name: action.payload.name})}
+      state.dogs.push({url: action.payload.url, name: action.payload.breed})
+      console.log('state ', state);
+      console.log('action >>>  ', action);
       
-      return state
+      return state;
     default:
       throw new Error(`Unhandled action type: ${action}`)
   }

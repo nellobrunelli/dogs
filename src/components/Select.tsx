@@ -11,28 +11,44 @@ interface Props {
 
 const Select:React.FC<Props> = ({dispatchDogs}) => {
 
+
   const [open, setOpen] = useState(false);
   const [optionsState] = useState([
     {
-      breed: 'doberman',
-      key: '',
+      name: 'Boxer',
+      url: 'https://dog.ceo/api/breed/boxer/images/random',
       selected: false
     },
     {
-      breed: 'pastore tedesco',
-      key: 'pastore-tedesco',
+      name: 'Chihuahua',
+      url: 'https://dog.ceo/api/breed/chihuahua/images/random',
       selected: false
     },
     {
-      breed: 'bassotto',
-      key: '',
+      name: 'Collie',
+      url: 'https://dog.ceo/api/breed/collie/border/images/random',
+      selected: false
+    },
+    {
+      name: 'San Bernardo',
+      url: 'https://dog.ceo/api/breed/stbernard/images/random',
+      selected: false
+    },
+    {
+      name: 'Doberman',
+      url: 'https://dog.ceo/api/breed/doberman/images/random',
+      selected: false
+    },
+    {
+      name: 'Pitbull',
+      url: 'https://dog.ceo/api/breed/pitbull/images/random',
       selected: false
     }
   ])
 
   type option = {
-      breed: string,
-      key: string,
+      name: string,
+      url: string,
       selected: boolean
   }
   
@@ -47,13 +63,13 @@ const Select:React.FC<Props> = ({dispatchDogs}) => {
           <div
             className={"flex hover:bg-slate-400 hover:text-white duration-200 my-1"}
             onClick={() => {
-              dispatchDogs({type: 'FETCH_DOGS_BY_BREED', payload: option.breed})
+              dispatchDogs({type: 'FETCH_DOGS_BY_BREED', payload: {url:option.url, breed: option.name}})
               setOpen(false);
             }}
             key={i}
           >
             <FaDog className='my-1 mx-1 mr-2'/>
-            <div className=''>{option.breed}</div>
+            <div className=''>{option.name}</div>
           </div>
         )
       })
