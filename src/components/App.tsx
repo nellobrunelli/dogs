@@ -95,12 +95,16 @@ function App() {
   }
 
   return (
-    <div className='flex flex-row'>
-      <div className='bg-amber-400 p-2'>
-        <FaDog className='w-28 h-28 p-2' />
-        <Select getDogByBreed={getDogByBreed} />
+    <div className='sm:flex sm:flex-col md:flex md:flex-row duration-200'>
+      <div className='bg-amber-400 p-2 items-center'>
+        <div className="sm:ml-[40%] md:ml-2 duration-200 ">
+          <FaDog className='w-28 h-28 p-2'/>
+          <div className='w-40'>
+            <Select getDogByBreed={getDogByBreed} />
+          </div>
+        </div>
       </div>
-      <div className='p-2 w-4/5'>{displayDom()}</div>
+      <div className='sm:w-full md:p-2 md:w-4/5'>{displayDom()}</div>
     </div>
   )
 }

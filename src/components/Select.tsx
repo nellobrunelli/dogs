@@ -85,7 +85,7 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
         onClick={() => {toggle(!open)}}
       >
         add one dog
-        <div className='my-1 mx-1 hover:text-white hover:bg-slate-800 rounded-full'>
+        <div className='my-1 mx-3 hover:text-white hover:bg-slate-800 rounded-full'>
           {getHeaderArrow(open)}
         </div>               
       </div>
