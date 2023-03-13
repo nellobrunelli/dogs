@@ -96,10 +96,10 @@ function App() {
 
   return (
     <div className='sm:flex sm:flex-col md:flex md:flex-row duration-200'>
-      <div className='bg-amber-400 p-2 items-center'>
-        <div className="sm:ml-[40%] md:ml-2 duration-200 ">
-          <FaDog className='w-28 h-28 p-2'/>
-          <div className='w-40'>
+      <div className='bg-amber-400'>
+        <div className="ml-[40%] md:ml-2 duration-200">
+          <FaDog className='w-28 h-28 p-2' />
+          <div className='w-1/3'>
             <Select getDogByBreed={getDogByBreed} />
           </div>
         </div>
