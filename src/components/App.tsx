@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useReducer } from 'react'
 import { useEffect } from 'react';
-import { URL_GET_RANDOM_DOGS, URL_GET_DOG_BY_BREED } from '../constants/url';
+import { URL_GET_RANDOM_DOGS } from '../constants/url';
 
 import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
 import {reducerErrors, StateErrorsInit} from '../reducers/reducerErrors';
