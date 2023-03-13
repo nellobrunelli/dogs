@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useReducer } from 'react'
+import { FaDog } from 'react-icons/fa';
+
 import { useEffect } from 'react';
 import { URL_GET_RANDOM_DOGS } from '../constants/url';
 
@@ -84,7 +86,6 @@ function App() {
 
     return (
       <div>
-        <Select getDogByBreed={getDogByBreed} />
         <Dogs
           dogs={stateDogs} 
           dispatchDogs={dispatchDogs} 
@@ -94,8 +95,12 @@ function App() {
   }
 
   return (
-    <div>
-      <div>{displayDom()}</div>
+    <div className='flex flex-row'>
+      <div className='bg-amber-400 p-2'>
+        <FaDog className='w-28 h-28 p-2' />
+        <Select getDogByBreed={getDogByBreed} />
+      </div>
+      <div className='p-2 w-4/5'>{displayDom()}</div>
     </div>
   )
 }

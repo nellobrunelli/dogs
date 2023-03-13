@@ -81,10 +81,10 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
   const showHeader = (open: boolean) => {
     return (
       <div 
-        className="flex"
+        className="flex rounded-lg p-2 text-black hover:bg-slate-400 duration-200 hover:text-white"
         onClick={() => {toggle(!open)}}
       >
-        Select breed 
+        add one dog
         <div className='my-1 mx-1'>{getHeaderArrow(open)}</div>               
         
       </div>
