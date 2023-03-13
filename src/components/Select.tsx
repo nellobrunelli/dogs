@@ -2,14 +2,13 @@ import type React from 'react'
 import { useState } from 'react';
 import { FaDog } from 'react-icons/fa';
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
-import type { Dispatch } from 'react';
-import type { ActionDogs } from '../reducers/reducerDogs';
 
+type getDogByBreed = (par: string) => void
 interface Props {
-  dispatchDogs: Dispatch<ActionDogs>
+  getDogByBreed: getDogByBreed
 }
 
-const Select:React.FC<Props> = ({dispatchDogs}) => {
+const Select:React.FC<Props> = ({getDogByBreed}) => {
 
 
   const [open, setOpen] = useState(false);
@@ -57,13 +56,14 @@ const Select:React.FC<Props> = ({dispatchDogs}) => {
   }
 
   const showOptions = (open: boolean, options: option[]) => {
+    
     return open ? (
       options.map((option, i) => {
         return (
           <div
             className={"flex hover:bg-slate-400 hover:text-white duration-200 my-1"}
             onClick={() => {
-              dispatchDogs({type: 'FETCH_DOGS_BY_BREED', payload: {url:option.url, breed: option.name}})
+              getDogByBreed(option.url)
               setOpen(false);
             }}
             key={i}
@@ -98,7 +98,7 @@ const Select:React.FC<Props> = ({dispatchDogs}) => {
   const showbackground = (open: boolean| null): React.ReactNode => {
     return open? 
       <button 
-        className='fixed top-0 right-0 bottom-0 h-full w-full bg-slate-400 opacity-40' 
+        className='fixed top-0 right-0 bottom-0 h-full w-full bg-slate-400 opacity-40 cursor-default' 
         onClick={() => { setOpen(false) }}
       />  
       : null
