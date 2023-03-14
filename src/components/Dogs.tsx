@@ -34,7 +34,7 @@ const Dogs:React.FC<Props> = ({
   }
 
   return (
-    <div>
+    <div className='rounded'>
      {displayDom()}
     </div>
   )

@@ -55,13 +55,29 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
     setOpen(flag);
   }
 
+
+  const showHeader = (open: boolean) => {
+    return (
+      <div>
+        <div 
+          onClick={() => {toggle(!open)}}
+          className='w-40 p-2 flex hover:bg-slate-400 hover:text-white duration-200 rounded'
+        >
+          <div className='flex-auto'>one more dog</div>
+          <div className='p-1 ml-2 rounded-full hover:bg-slate-600 duration-200'>
+            {getHeaderArrow(open)}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const showOptions = (open: boolean, options: option[]) => {
     
     return open ? (
       options.map((option, i) => {
         return (
-          <div
-            className={"flex hover:bg-slate-400 hover:text-white duration-200 my-1"}
+          <div className={'p-1 flex hover:bg-slate-400 hover:text-white duration-200 my-1 rounded'}
             onClick={() => {
               getDogByBreed(option.url)
               setOpen(false);
@@ -78,19 +94,6 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
     )
   }
 
-  const showHeader = (open: boolean) => {
-    return (
-      <div 
-        className="flex rounded-lg p-2 text-black hover:bg-slate-400 duration-200 hover:text-white"
-        onClick={() => {toggle(!open)}}
-      >
-        add one dog
-        <div className='my-1 mx-3 hover:text-white hover:bg-slate-800 rounded-full'>
-          {getHeaderArrow(open)}
-        </div>               
-      </div>
-    )
-  }
 
   const getHeaderArrow = (open: boolean) => {
     return open ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />
@@ -98,8 +101,7 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
 
   const showbackground = (open: boolean| null): React.ReactNode => {
     return open? 
-      <button 
-        className='fixed top-0 right-0 bottom-0 h-full w-full bg-slate-400 opacity-40 cursor-default' 
+      <button className='fixed top-0 right-0 bottom-0 h-full w-full bg-slate-400 opacity-40 cursor-default' 
         onClick={() => { setOpen(false) }}
       />  
       : null
@@ -108,12 +110,14 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
   return (
     <div>
       <div>
-        {showHeader(open)}
+        <div>
+          {showHeader(open)}
+        </div>
+        <div >
+          {showbackground(open)}
+        </div>   
       </div>
-      <div >
-        {showbackground(open)}
-      </div>
-      <div className='absolute shadow-lg w-40 bg-white rounded'>
+      <div className='absolute bg-white rounded'>
         {showOptions(open, optionsState)}
       </div>
     </div>

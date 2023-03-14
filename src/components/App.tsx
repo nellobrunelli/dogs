@@ -85,26 +85,22 @@ function App() {
     }
 
     return (
-      <div>
         <Dogs
           dogs={stateDogs} 
           dispatchDogs={dispatchDogs} 
         />
-      </div>
     )
   }
 
   return (
-    <div className='sm:flex sm:flex-col md:flex md:flex-row duration-200'>
-      <div className='bg-amber-400'>
-        <div className="ml-[40%] md:ml-2 duration-200">
-          <FaDog className='w-28 h-28 p-2' />
-          <div className='w-1/3'>
-            <Select getDogByBreed={getDogByBreed} />
-          </div>
+    <div className='sm:flex sm:flex-col md:flex-row duration-200'>
+      <div className='rounded m-1 bg-amber-400 md:w-56 duration-200'>
+        <div className='pb-2 ml-[35%] md:ml-10 duration-200'>
+          <FaDog className='w-28 h-28 p-2 ml-2' />
+          <Select getDogByBreed={getDogByBreed} />
         </div>
       </div>
-      <div className='sm:w-full md:p-2 md:w-4/5'>{displayDom()}</div>
+      <div className='m-1 sm:w-full md:w-4/5'>{displayDom()}</div>
     </div>
   )
 }
