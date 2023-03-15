@@ -12,22 +12,20 @@ import Dogs from './Dogs';
 import Error from './Error';
 import Loader from './Loader';
 import Select from './Select';
-import Dog from './Dog';
-
+ 
 function App() {
 
-  const [stateDogs, dispatchDogs] = useReducer(reducerDogs, StateDogsInit)
-  const [stateErrors, dispatchErrors] = useReducer(reducerErrors, StateErrorsInit)
-  const [stateLoading, dispatchLoading] = useReducer(reducerLoading, StateLoadingInit)
+  const [stateDogs, dispatchDogs] = useReducer(reducerDogs, StateDogsInit);
+  const [stateErrors, dispatchErrors] = useReducer(reducerErrors, StateErrorsInit);
+  const [stateLoading, dispatchLoading] = useReducer(reducerLoading, StateLoadingInit);
 
   useEffect(() => {
-    getRandomDogs()
-  }, [])
+    getRandomDogs();
+  }, []);
 
+  const getRandomDogs = () => {
 
-  const getRandomDogs = () => {    
-
-    dispatchLoading({type: 'LOADING_TRUE'})
+    dispatchLoading({ type: 'LOADING_TRUE' });
 
     axios
       .get(URL_GET_RANDOM_DOGS)
@@ -35,63 +33,62 @@ function App() {
         dispatchDogs({
           type: 'GET_RANDOM_DOGS',
           payload: response.data
-        })
+        });
       })
-      .catch(error => {      
+      .catch(error => {
         dispatchErrors({
           type: 'SHOW_ERROR',
           isActive: true,
           payload: error.message
-        })     
+        });
       })
       .finally(() => {
-        dispatchLoading({type: 'LOADING_FALSE'})
-      })
-  }
+        dispatchLoading({ type: 'LOADING_FALSE' });
+      });
+  };
 
-  const getDogByBreed = (url: string) => {    
+  const getDogByBreed = (url: string) => {
 
-    dispatchLoading({type: 'LOADING_TRUE'})
+    dispatchLoading({ type: 'LOADING_TRUE' });
 
     axios
       .get(url)
       .then(response => {
-        
+
         dispatchDogs({
           type: 'GET_DOG_BY_BREED',
           payload: response
-        })
+        });
       })
-      .catch(error => {      
+      .catch(error => {
         dispatchErrors({
           type: 'SHOW_ERROR',
           isActive: true,
           payload: error.message
-        })     
+        });
       })
       .finally(() => {
-        dispatchLoading({type: 'LOADING_FALSE'})
-      })
-  }
+        dispatchLoading({ type: 'LOADING_FALSE' });
+      });
+  };
 
 
   const displayDom = () => {
 
     if (stateErrors.isActive) {
-      return <Error text={stateErrors.error} />
+      return <Error text={stateErrors.error} />;
     }
 
     if (stateLoading.isLoading) {
-      return <Loader />
+      return <Loader />;
     }
 
     return (
-        <Dogs
-          dogs={stateDogs} 
-          dispatchDogs={dispatchDogs} 
-        />
-    )
-  }
+      <Dogs
+        dogs={stateDogs}
+        dispatchDogs={dispatchDogs} />
+    );
+  };
 
   return (
     <div className='sm:flex sm:flex-col md:flex-row duration-200'>
@@ -103,7 +100,7 @@ function App() {
       </div>
       <div className='m-1 sm:w-full md:w-4/5'>{displayDom()}</div>
     </div>
-  )
+  );
 }
 
 export default App
