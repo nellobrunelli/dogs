@@ -12,6 +12,7 @@ import Dogs from './Dogs';
 import Error from './Error';
 import Loader from './Loader';
 import Select from './Select';
+import Dog from './Dog';
 
 function App() {
 
@@ -102,6 +103,24 @@ function App() {
       </div>
       <div className='m-1 sm:w-full md:w-4/5'>{displayDom()}</div>
     </div>
+
+//  type Props = {
+//   dog: Dog,
+//   dispatchDogs: Dispatch<ActionDogs>,
+//   mkey: number
+// }
+   
+    // <div className="className">
+    //     <Dog
+    //       dog={{
+    //         url: "https://images.dog.ceo/breeds/terrier-irish/n02093991_686.jpg",
+    //         name: 'terrier irish'
+    //       }} 
+    //       dispatchDogs={dispatchDogs} 
+    //       mkey={1}
+    //     />
+
+    // </div>
   )
 }
 

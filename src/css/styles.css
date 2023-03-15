@@ -10,12 +10,15 @@
     @apply w-52 max-w-sm rounded border-2 shadow-xl m-2 px-2 py-2 hover:w-56 hover:bg-gray-200 duration-200;
   }
   .dog-header {
-    @apply flex text-left text-xs;
+    @apply flex;
   }
   .dog-image {
-    @apply p-1;
+    @apply p-1 rounded-lg;
+  }
+  .dog-name {
+    @apply flex-initial;
   }
   .buttonDeleteDog {
-    @apply bg-white rounded-xl ml-[40%] text-gray-400 hover:text-gray-500 hover:bg-gray-100;
+    @apply rounded-lg pl-1 pt-1 pr-1 flex-none bg-white  text-gray-400 hover:text-gray-500 hover:bg-gray-100;
   }
 }

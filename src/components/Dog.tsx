@@ -13,18 +13,21 @@ const Dog:React.FC<Props> = ({dog, dispatchDogs, mkey}) => {
   return (
     <div key={mkey} className="dog">
       <div className="dog-header">  
-        <div>{dog.name}</div>
-        <button 
-          type="button" 
-          className="buttonDeleteDog"
-          onClick={() => {dispatchDogs({type: 'DELETE_DOG', payload: dog.url})}}
-        >
-          <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <div className='dog-name'>{dog.name}</div>
+        <div className="grow"></div>
+        <div className="buttonDeleteDog">
+          <button 
+            type="button" 
+            onClick={() => {dispatchDogs({type: 'DELETE_DOG', payload: dog.url})}}
+          >
+            <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
-      <img className='dog-image' src={dog.url} />
+      <div className='dog-image'><img src={dog.url} /></div>
+      
     </div>
   )
 }
