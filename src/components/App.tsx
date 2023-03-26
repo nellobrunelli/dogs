@@ -3,7 +3,7 @@ import React, { useReducer } from 'react'
 import { FaDog } from 'react-icons/fa';
 
 import { useEffect } from 'react';
-import { URL_GET_RANDOM_DOGS } from '../constants/url';
+import { GET_OPTIONS, URL_GET_RANDOM_DOGS } from '../constants/url';
 
 import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
 import {reducerErrors, StateErrorsInit} from '../reducers/reducerErrors';
@@ -12,6 +12,7 @@ import Dogs from './Dogs';
 import Error from './Error';
 import Loader from './Loader';
 import Select from './Select';
+import useFetch from '../hooks/useFetch';
  
 function App() {
 
@@ -19,9 +20,9 @@ function App() {
   const [stateErrors, dispatchErrors] = useReducer(reducerErrors, StateErrorsInit);
   const [stateLoading, dispatchLoading] = useReducer(reducerLoading, StateLoadingInit);
 
-  useEffect(() => {
-    getRandomDogs();
-  }, []);
+  // useEffect(() => {
+  //   getRandomDogs();
+  // }, []);
 
   const getRandomDogs = () => {
 
@@ -90,12 +91,26 @@ function App() {
     );
   };
 
+  const test = () => {
+    const {error, loader, result} = useFetch(URL_GET_RANDOM_DOGS, GET_OPTIONS);
+    console.log('error ', error);
+    console.log('loader ', loader);
+    console.log('result ', result);
+    
+    return (
+      <div>
+        applicazione avviata
+      </div>
+    )
+  }
+
   return (
     <div className='sm:flex sm:flex-col md:flex-row duration-200'>
       <div className='rounded m-1 bg-amber-400 md:w-56 duration-200'>
         <div className='pb-2 ml-[35%] md:ml-10 duration-200'>
-          <FaDog className='w-28 h-28 p-2 ml-2' />
-          <Select getDogByBreed={getDogByBreed} />
+          {/* <FaDog className='w-28 h-28 p-2 ml-2' />
+          <Select getDogByBreed={getDogByBreed} /> */}
+          {test()}
         </div>
       </div>
       <div className='m-1 sm:w-full md:w-4/5'>{displayDom()}</div>
