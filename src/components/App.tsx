@@ -28,7 +28,6 @@ function App() {
     dispatchDogs
   );
 
-
   const getDogByBreed = (url: string) => {
 
     dispatchLoading({ type: 'LOADING_TRUE' });
@@ -58,11 +57,16 @@ function App() {
     return stateLoading.isLoading ? <Loader/> : null
   }
 
+  const showError = () => {
+    return stateErrors.isActive ? <Error text={stateErrors.error}/> : null
+  }
+
   return (
     <div className='sm:flex sm:flex-col md:flex-row duration-200'>
       <div className='rounded m-1 bg-amber-400 md:w-56 duration-200'>
         <div className='pb-2 ml-[35%] md:ml-10 duration-200'>
           <div>{showLoader()}</div>
+          <div>{showError()}</div>
           <FaDog className='w-28 h-28 p-2 ml-2' />
           <Select getDogByBreed={getDogByBreed} />
         </div>
