@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useReducer } from 'react'
 import { FaDog } from 'react-icons/fa';
 
-import { useEffect } from 'react';
 import { GET_OPTIONS, URL_GET_RANDOM_DOGS } from '../constants/url';
 
 import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
