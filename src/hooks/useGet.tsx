@@ -3,9 +3,10 @@ import type { ActionDogs } from '../reducers/reducerDogs'
 import type { ActionErrors } from '../reducers/reducerErrors'
 import type { ActionLoading } from '../reducers/reducerLoading'
 
-export const useFetch = (
+export const useGet = (
   URL: string,
   OPTIONS = {},
+  action: 'GET_RANDOM_DOGS' | 'GET_DOG_BY_BREED',
   dispatchError: Dispatch<ActionErrors>,
   dispatchLoading: Dispatch<ActionLoading>,
   dispatchDogs: Dispatch<ActionDogs>
@@ -27,7 +28,11 @@ export const useFetch = (
         return r2.json()
       })
       .then((r3) => {
-        dispatchDogs({type: 'GET_RANDOM_DOGS', payload: r3})
+        if (action === 'GET_RANDOM_DOGS') {
+          dispatchDogs({type: 'GET_RANDOM_DOGS', payload: r3})
+        } else if (action === 'GET_DOG_BY_BREED') {
+          dispatchDogs({type: 'GET_DOG_BY_BREED', payload: r3})
+        }
       })
       .catch((error) => {
         dispatchError({type: 'SHOW_ERROR', isActive: true, payload: error.message})
@@ -38,4 +43,4 @@ export const useFetch = (
   }, [URL])
 }
 
-export default useFetch;
+export default useGet;
