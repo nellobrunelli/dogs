@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React, { useReducer } from 'react'
 import { FaDog } from 'react-icons/fa';
 
-import { GET_OPTIONS, URL_GET_RANDOM_DOGS } from '../constants/url';
+import { GET_OPTIONS, URL_GET_DOG_BY_BREED, URL_GET_RANDOM_DOGS } from '../constants/url';
 
 import {reducerDogs, StateDogsInit} from '../reducers/reducerDogs';
 import {reducerErrors, StateErrorsInit} from '../reducers/reducerErrors';
@@ -27,32 +26,7 @@ function App() {
     dispatchDogs
   );
 
-  const getDogByBreed = (url: string) => {
-
-    dispatchLoading({ type: 'LOADING_TRUE' });
-
-    axios
-      .get(url)
-      .then(response => {
-
-        dispatchDogs({
-          type: 'GET_DOG_BY_BREED',
-          payload: response
-        });
-      })
-      .catch(error => {
-        dispatchErrors({
-          type: 'SHOW_ERROR',
-          isActive: true,
-          payload: error.message
-        });
-      })
-      .finally(() => {
-        dispatchLoading({ type: 'LOADING_FALSE' });
-      });
-  };
-
-  const showLoader = () => {
+  const showLoader = () => {    
     return stateLoading.isLoading ? <Loader/> : null
   }
 
@@ -67,7 +41,13 @@ function App() {
           <div>{showLoader()}</div>
           <div>{showError()}</div>
           <FaDog className='w-28 h-28 p-2 ml-2' />
-          <Select getDogByBreed={getDogByBreed} />
+          <Select 
+            URL={URL_GET_DOG_BY_BREED}
+            getOptions={GET_OPTIONS}
+            dispatchErrors={dispatchErrors}
+            dispatchLoading={dispatchLoading}
+            dispatchDogs={dispatchDogs}
+           />
         </div>
       </div>
       <div className='m-1 sm:w-full md:w-4/5'>

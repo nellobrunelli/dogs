@@ -1,15 +1,21 @@
 import type React from 'react'
-import { useState } from 'react';
+import { Dispatch, useState } from 'react';
 import { FaDog } from 'react-icons/fa';
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
+import type { ActionErrors } from '../reducers/reducerErrors';
+import type { ActionLoading } from '../reducers/reducerLoading';
+import type { ActionDogs } from '../reducers/reducerDogs';
+import getDog from '../hooks/useGet';
 
-type getDogByBreed = (par: string) => void
-interface Props {
-  getDogByBreed: getDogByBreed
+type Props = {
+  URL: string, 
+  getOptions: object, 
+  dispatchErrors: Dispatch<ActionErrors>, 
+  dispatchLoading: Dispatch<ActionLoading>, 
+  dispatchDogs: Dispatch<ActionDogs>
 }
 
-const Select:React.FC<Props> = ({getDogByBreed}) => {
-
+const Select: React.FC<Props> = ({URL, getOptions, dispatchErrors, dispatchLoading, dispatchDogs}) => {
 
   const [open, setOpen] = useState(false);
   const [optionsState] = useState([
@@ -55,7 +61,6 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
     setOpen(flag);
   }
 
-
   const showHeader = (open: boolean) => {
     return (
       <div>
@@ -79,7 +84,13 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
         return (
           <div className={'p-1 flex hover:bg-slate-400 hover:text-white duration-200 my-1 rounded'}
             onClick={() => {
-              getDogByBreed(option.url)
+                getDog(
+                option.url,
+                getOptions,
+                dispatchErrors,
+                dispatchLoading,
+                dispatchDogs
+              )
               setOpen(false);
             }}
             key={i}
@@ -93,7 +104,6 @@ const Select:React.FC<Props> = ({getDogByBreed}) => {
        null
     )
   }
-
 
   const getHeaderArrow = (open: boolean) => {
     return open ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />

@@ -37,8 +37,8 @@ export const reducerDogs = (state: StateDogs, action: ActionDogs): StateDogs => 
     }
     case 'DELETE_DOG':      
       return {...state, dogs: state.dogs.filter((dog) => { return dog.url !== action.payload})}
-    case 'GET_DOG_BY_BREED':      
-      state.dogs.push({url: action.payload.data.message, name: action.payload.data.message.split("/")[4].replace('-', ' ')})
+    case 'GET_DOG_BY_BREED':    
+      state.dogs.push({url: action.payload.message, name: action.payload.message.split("/")[4].replace('-', ' ')})
       return state;
     default:
       throw new Error(`Unhandled action type: ${action}`)
