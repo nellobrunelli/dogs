@@ -15,7 +15,6 @@ const Dogs:React.FC<Props> = ({
     dispatchDogs
   }) => {
 
-
   const displayDogs = (dogs: StateDogs) => {       
     return dogs.dogs.reverse().map((dog, i) => { 
       return (
