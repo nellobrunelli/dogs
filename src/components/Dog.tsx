@@ -1,14 +1,14 @@
-import type React from 'react'
+import React from 'react'
 import type { Dispatch } from 'react'
-import type { ActionDogs, Dog } from '../reducers/reducerDogs'
+import type { ActionDogs } from '../reducers/reducerDogs'
 
 type Props = {
-  dog: Dog,
+  dog: {name: string, url: string},
   dispatchDogs: Dispatch<ActionDogs>,
   mkey: number
 }
 
-const Dog:React.FC<Props> = ({dog, dispatchDogs, mkey}) => {
+const Dog = ({dog, dispatchDogs, mkey}: Props) => {
   
   return (
     <div key={mkey} className="dog">

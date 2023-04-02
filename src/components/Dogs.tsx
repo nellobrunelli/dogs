@@ -1,6 +1,6 @@
-import type React from 'react'
+import React from 'react'
 import type { Dispatch } from 'react'
-import type {ActionDogs, StateDogs} from '../reducers/reducerDogs'
+import  type {ActionDogs, StateDogs} from '../reducers/reducerDogs'
 
 import Dog from './Dog'
 import '../css/styles.css'
