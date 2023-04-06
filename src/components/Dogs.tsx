@@ -13,7 +13,7 @@ interface Props {
 const Dogs:React.FC<Props> = ({
     dogs,
     dispatchDogs
-  }) => {
+}) => {
 
   const displayDogs = (dogs: StateDogs) => {       
     return dogs.dogs.reverse().map((dog, i) => { 
